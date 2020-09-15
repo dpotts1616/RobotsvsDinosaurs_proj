@@ -9,7 +9,7 @@ namespace RobotsvsDinosaurs
     class Herd
     {
         //member variables
-        List<Dinosaur> dinosaur = new List<Dinosaur>();
+        public List<Dinosaur> dinosaur = new List<Dinosaur>();
 
         //constructor
         public Herd()
@@ -34,6 +34,7 @@ namespace RobotsvsDinosaurs
         {
             Dinosaur defendDino = dinosaur[0];
             bool deadDino = defendDino.Defend(defendDino, attack);
+            
             if (deadDino == true)
             {
                 RemoveDeadDino(defendDino);

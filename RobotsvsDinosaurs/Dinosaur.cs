@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RobotsvsDinosaurs
@@ -10,22 +11,33 @@ namespace RobotsvsDinosaurs
     class Dinosaur
     {
         //member variables
-        string type;
-        int health;
-        int energy;
-        int attackPower;
-        Random rand = new Random();
+        public string type;
+        public int health;
+        public int energy;
+        public int attackPower;
+        public Random rand = new Random();
 
         //constructor
         public Dinosaur(string type)
         {
             this.type = type;
-            health = rand.Next(90,110);
+            health = GetRandHealth();
             energy = 100;
-            attackPower = rand.Next(20,25);
+            attackPower = GetRandAttack();
         }
 
         //methods
+        public int GetRandHealth()
+        {
+            Thread.Sleep(100);
+            return rand.Next(90, 110);
+        }
+
+        public int GetRandAttack()
+        {
+            Thread.Sleep(100);
+            return rand.Next(20, 25);
+        }
         public int Attack(Dinosaur dinosaur)
         {
             return dinosaur.attackPower;

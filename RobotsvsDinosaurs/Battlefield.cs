@@ -24,10 +24,31 @@ namespace RobotsvsDinosaurs
         //methods
         public void CommenceBattle()
         {
-            //player.DisplayGameStatus(robotFleet,dinoHerd);
+            player.DisplayGameIntro();
+            bool again = true;
+            while (again == true)
+            {
+                while (robotFleet.robots.Count > 0 && dinoHerd.dinosaur.Count > 0)
+                {
+                    player.DisplayGameStatus(robotFleet, dinoHerd);
+                    RunBattleSequence();
+                    Console.ReadLine();
+                }
+                player.DisplayGameEnd(robotFleet, dinoHerd);
+                again = player.PlayAgain();
+            }
+        }
 
-            RobotAttack();
-            DinoAttack();
+        public void RunBattleSequence()
+        {
+            if(robotFleet.robots.Count > 0)
+            {
+                RobotAttack();
+            }
+            if(dinoHerd.dinosaur.Count > 0)
+            {
+                DinoAttack();
+            }
         }
 
         public void RobotAttack()

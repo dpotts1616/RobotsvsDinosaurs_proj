@@ -9,7 +9,7 @@ namespace RobotsvsDinosaurs
     class Fleet
     {
         //member variables
-        List<Robot> robots = new List<Robot>();
+        public List<Robot> robots = new List<Robot>();
 
         //constructor
         public Fleet()
