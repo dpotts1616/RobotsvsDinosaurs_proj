@@ -12,7 +12,7 @@ namespace RobotsvsDinosaurs
         static void Main(string[] args)
         {
 
-            bool again = true;
+            bool again;
             do
             {
                 Battlefield battlefield = new Battlefield();

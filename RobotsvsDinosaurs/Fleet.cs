@@ -24,11 +24,11 @@ namespace RobotsvsDinosaurs
         }
 
         //methods
-        public int GetAttack()
+        public Robot GetAttack()
         {
             Robot attackRobot = robots[0];
-            int attack = attackRobot.Attack(attackRobot);
-            return attack;
+            //int attack = attackRobot.Attack(attackRobot);
+            return attackRobot;
         }
 
         public void ReceiveAttack(int attack)

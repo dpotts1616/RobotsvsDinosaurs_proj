@@ -72,16 +72,18 @@ namespace RobotsvsDinosaurs
 
         public void RobotAttack()
         {
-            int attack = robotFleet.GetAttack();
-            player.DisplayRobotAttack(attack);
-            dinoHerd.ReceiveAttack(attack);
+            Robot robot = robotFleet.GetAttack();
+            player.DisplayRobotAttack(robot, robot.attackPower);
+            dinoHerd.ReceiveAttack(robot.attackPower);
         }
 
         public void DinoAttack()
         {
-            int attack = dinoHerd.GetAttack();
-            player.DisplayDinoAttack(attack);
-            robotFleet.ReceiveAttack(attack);
+            Dinosaur dino = dinoHerd.GetAttack();
+            string attack = player.SelectAttackType(dino);
+            dino.energy -= 10;
+            player.DisplayDinoAttack(dino, dino.attackPower, attack);
+            robotFleet.ReceiveAttack(dino.attackPower);
         }
 
         public bool PlayAgain()

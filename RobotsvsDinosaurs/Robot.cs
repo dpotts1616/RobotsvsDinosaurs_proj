@@ -48,7 +48,7 @@ namespace RobotsvsDinosaurs
         public bool Defend(Robot robot, int attackValue)
         {
             robot.health -= attackValue;
-            if (robot.health < 0)
+            if (robot.health <= 0)
             {
                 return true;
             }
