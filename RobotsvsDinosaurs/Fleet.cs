@@ -47,7 +47,14 @@ namespace RobotsvsDinosaurs
             robots.Remove(robot);
         }
 
-
+        public Robot AssignWeapon(int i, string choice)
+        {
+            Robot robot = robots[i];
+            Weapon weapon = new Weapon(choice);
+            robot.type = weapon;
+            return robot;
+            
+        }
 
     }
 }

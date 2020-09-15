@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,9 +11,19 @@ namespace RobotsvsDinosaurs
     {
         static void Main(string[] args)
         {
-            Battlefield battlefield = new Battlefield();
 
-            battlefield.CommenceBattle();
+            bool again = true;
+            do
+            {
+                Battlefield battlefield = new Battlefield();
+
+                battlefield.CommenceBattle();
+
+                again = battlefield.PlayAgain();
+
+            } while (again == true);
+
+
 
             Console.ReadLine();
         }

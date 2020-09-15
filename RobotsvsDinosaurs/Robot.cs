@@ -23,7 +23,7 @@ namespace RobotsvsDinosaurs
             this.name = name;
             health = GetRandHealth();
             powerLevel = 100;
-            type = new Weapon();
+            type = null;
             attackPower = GetRandAttack();
         }
 
@@ -31,13 +31,13 @@ namespace RobotsvsDinosaurs
         public int GetRandHealth()
         {
             Thread.Sleep(100);
-            return rand.Next(90, 110);
+            return rand.Next(90, 111);
         }
 
         public int GetRandAttack()
         {
             Thread.Sleep(100);
-            return rand.Next(20, 25);
+            return rand.Next(20, 26);
         }
 
         public int Attack(Robot robot)
@@ -56,6 +56,11 @@ namespace RobotsvsDinosaurs
             {
                 return false;
             }
+
+        }
+
+        public void AddWeapon(int i, string choice)
+        {
 
         }
     }

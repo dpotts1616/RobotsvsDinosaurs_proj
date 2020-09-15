@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RobotsvsDinosaurs
@@ -12,6 +13,8 @@ namespace RobotsvsDinosaurs
         Fleet robotFleet;
         Herd dinoHerd;
         Player player;
+        Random rand = new Random();
+        public int side;
 
         //constructor
         public Battlefield()
@@ -25,42 +28,80 @@ namespace RobotsvsDinosaurs
         public void CommenceBattle()
         {
             player.DisplayGameIntro();
-            bool again = true;
-            while (again == true)
+            robotFleet = OutfitRobotArmy();
+            
+            while (robotFleet.robots.Count > 0 && dinoHerd.dinosaur.Count > 0)
             {
-                while (robotFleet.robots.Count > 0 && dinoHerd.dinosaur.Count > 0)
-                {
-                    player.DisplayGameStatus(robotFleet, dinoHerd);
-                    RunBattleSequence();
-                    Console.ReadLine();
-                }
-                player.DisplayGameEnd(robotFleet, dinoHerd);
-                again = player.PlayAgain();
+                player.DisplayGameStatus(robotFleet, dinoHerd);
+                Console.ReadLine();
+                RunBattleSequence();
             }
+            player.DisplayGameEnd(robotFleet, dinoHerd);
         }
 
         public void RunBattleSequence()
         {
-            if(robotFleet.robots.Count > 0)
+            side = rand.Next(1, 3);
+            if (side == 1)
             {
-                RobotAttack();
+                RobotsAttackFirst();
             }
-            if(dinoHerd.dinosaur.Count > 0)
+            else if (side == 2)
+            {
+                DinosAttackFirst();
+            }
+        }
+
+        public void RobotsAttackFirst()
+        {
+            RobotAttack();
+            if (dinoHerd.dinosaur.Count > 0)
             {
                 DinoAttack();
+            }
+        }
+
+        public void DinosAttackFirst()
+        {
+            DinoAttack();
+            if (robotFleet.robots.Count > 0)
+            {
+                RobotAttack();
             }
         }
 
         public void RobotAttack()
         {
             int attack = robotFleet.GetAttack();
+            player.DisplayRobotAttack(attack);
             dinoHerd.ReceiveAttack(attack);
         }
 
         public void DinoAttack()
         {
             int attack = dinoHerd.GetAttack();
+            player.DisplayDinoAttack(attack);
             robotFleet.ReceiveAttack(attack);
+        }
+
+        public bool PlayAgain()
+        {
+            bool again = player.PlayAgain();
+            return again;
+        }
+
+        public Fleet OutfitRobotArmy()
+        {
+            
+
+            for (int i = 0; i < 3; i++)
+            {
+                string choice = player.GetWeaponChoice(i);
+                Robot robot = robotFleet.AssignWeapon(i,choice);
+                robotFleet.robots[i] = robot;
+            }
+
+            return robotFleet;
         }
     }
 }
