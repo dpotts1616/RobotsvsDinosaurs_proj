@@ -9,17 +9,15 @@ namespace RobotsvsDinosaurs
     class Herd
     {
         //member variables
-        public List<Dinosaur> dinosaur = new List<Dinosaur>();
+        public List<Dinosaur> dinosaur;
 
         //constructor
-        public Herd()
+        public Herd(Random rand)
         {
-            Dinosaur dinosaur1 = new Dinosaur("Tyranosaurus");
-            Dinosaur dinosaur2 = new Dinosaur("Stegosaurus");
-            Dinosaur dinosaur3 = new Dinosaur("Pterydactyl");
-            dinosaur.Add(dinosaur1);
-            dinosaur.Add(dinosaur2);
-            dinosaur.Add(dinosaur3);
+            dinosaur = new List<Dinosaur>();
+            dinosaur.Add(new Dinosaur("Tyranosaurus", rand));
+            dinosaur.Add(new Dinosaur("Stegosaurus", rand));
+            dinosaur.Add(new Dinosaur("Pterydactyl", rand));
 
         }
         //methods

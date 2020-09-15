@@ -25,7 +25,7 @@ namespace RobotsvsDinosaurs
 
 
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
     }
 }

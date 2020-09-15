@@ -15,29 +15,19 @@ namespace RobotsvsDinosaurs
         public int health;
         public int energy;
         public int attackPower;
-        public Random rand = new Random();
+        public string[] attackArray;
 
         //constructor
-        public Dinosaur(string type)
+        public Dinosaur(string type, Random rand)
         {
             this.type = type;
-            health = GetRandHealth();
+            health = rand.Next(80, 120);
             energy = 100;
-            attackPower = GetRandAttack();
+            attackPower = rand.Next(20, 31);
+            attackArray = new string[2] { "Bite", "Stomp" };
         }
 
         //methods
-        public int GetRandHealth()
-        {
-            Thread.Sleep(100);
-            return rand.Next(90, 111);
-        }
-
-        public int GetRandAttack()
-        {
-            Thread.Sleep(100);
-            return rand.Next(20, 26);
-        }
         public int Attack(Dinosaur dinosaur)
         {
             return dinosaur.attackPower;

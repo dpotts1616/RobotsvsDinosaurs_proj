@@ -19,8 +19,8 @@ namespace RobotsvsDinosaurs
         //constructor
         public Battlefield()
         {
-            robotFleet = new Fleet();
-            dinoHerd = new Herd();
+            robotFleet = new Fleet(rand);
+            dinoHerd = new Herd(rand);
             player = new Player();
         }
 
@@ -28,7 +28,7 @@ namespace RobotsvsDinosaurs
         public void CommenceBattle()
         {
             player.DisplayGameIntro();
-            robotFleet = OutfitRobotArmy();
+            robotFleet = OutfitRobotArmy(rand);
             
             while (robotFleet.robots.Count > 0 && dinoHerd.dinosaur.Count > 0)
             {
@@ -73,14 +73,14 @@ namespace RobotsvsDinosaurs
         public void RobotAttack()
         {
             Robot robot = robotFleet.GetAttack();
-            player.DisplayRobotAttack(robot, robot.attackPower);
-            dinoHerd.ReceiveAttack(robot.attackPower);
+            player.DisplayRobotAttack(robot, robot.type.attackPower);
+            dinoHerd.ReceiveAttack(robot.type.attackPower);
         }
 
         public void DinoAttack()
         {
             Dinosaur dino = dinoHerd.GetAttack();
-            string attack = player.SelectAttackType(dino);
+            int attack = player.SelectAttackType(dino);
             dino.energy -= 10;
             player.DisplayDinoAttack(dino, dino.attackPower, attack);
             robotFleet.ReceiveAttack(dino.attackPower);
@@ -92,14 +92,14 @@ namespace RobotsvsDinosaurs
             return again;
         }
 
-        public Fleet OutfitRobotArmy()
+        public Fleet OutfitRobotArmy(Random rand)
         {
-            
+
 
             for (int i = 0; i < 3; i++)
             {
-                string choice = player.GetWeaponChoice(i);
-                Robot robot = robotFleet.AssignWeapon(i,choice);
+                int choice = player.GetWeaponChoice(i);
+                Robot robot = robotFleet.AssignWeapon(i, choice, rand);
                 robotFleet.robots[i] = robot;
             }
 

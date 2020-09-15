@@ -9,17 +9,28 @@ namespace RobotsvsDinosaurs
     class Weapon
     {
         //member variables
-        string type;
+        public string type;
+        public int attackPower;
 
         //constructor
-        public Weapon(string type)
+        public Weapon(int name, Random rand)
         {
-            this.type = type;
+            if (name == 1)
+            {
+                type = "Laser Sword";
+                attackPower = rand.Next(20, 26);
+
+            }else if (name == 2)
+            {
+                type = "Ray Gun";
+                attackPower = rand.Next(15, 31);
+            }else if (name == 3)
+            {
+                type = "Shock Cannon";
+                attackPower = rand.Next(5, 51);
+            }
         }
         //methods
-        public string GetWeapon(Robot robot)
-        {
-            return robot.type.type;
-        }
+        
     }
 }

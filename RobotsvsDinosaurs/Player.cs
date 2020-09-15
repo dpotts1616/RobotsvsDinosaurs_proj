@@ -33,8 +33,8 @@ namespace RobotsvsDinosaurs
             {
                 Console.Write($"Name: {robot.name}  ");
                 Console.Write($"Health: {robot.health}  ");
-                Console.Write($"Attack Power: {robot.attackPower}   ");
-                Console.WriteLine($"Weapon: {robot.type.GetWeapon(robot)}");
+                Console.Write($"Attack Power: {robot.type.attackPower}   ");
+                Console.WriteLine($"Weapon: {robot.type.type}");
 
             }
             Console.WriteLine();
@@ -96,65 +96,67 @@ namespace RobotsvsDinosaurs
             Console.ReadLine();
         }
 
-        public void DisplayDinoAttack(Dinosaur dino, int attackValue, string attackType)
+        public void DisplayDinoAttack(Dinosaur dino, int attackValue, int attackType)
         {
-            Console.WriteLine($"{dino.type} uses {attackType} for {attackValue} damage");
+            Console.WriteLine($"{dino.type} uses {dino.attackArray[attackType]} for {attackValue} damage");
             Console.ReadLine();
         }
 
-        public string GetWeaponChoice(int a)
+        public int GetWeaponChoice(int a)
         {
-            string choice;
+            //string choice;
             bool valid = false;
             do
             {
                 Console.WriteLine($"What weapon would you like robot {a + 1} to have?");
-                Console.WriteLine("1) Laser Sword");
-                Console.WriteLine("2) Ray Gun");
-                Console.WriteLine("3) Shock Cannon");
+                Console.WriteLine("1) Laser Sword (Attack Power 20-25)");
+                Console.WriteLine("2) Ray Gun (Attack Power 15-30)");
+                Console.WriteLine("3) Shock Cannon (Attack Power 5-50)");
                 int userInput = int.Parse(Console.ReadLine());
 
                 switch (userInput)
                 {
                     case 1:
-                        choice = "Laser Sword";
-                        return choice;
+                        //choice = "Laser Sword";
+                        return 1;
                     case 2:
-                        choice = "Ray Gun";
-                        return choice;
+                        //choice = "Ray Gun";
+                        return 2;
                     case 3:
-                        choice = "Shock Cannon";
-                        return choice;
+                        //choice = "Shock Cannon";
+                        return 3;
                     default:
                         Console.WriteLine("Invalid Response: Please enter 1, 2, or 3");
                         break;
                 }
             } while (valid == false);
-            return null;
+            return 0;
         }
 
-        public string SelectAttackType(Dinosaur dino)
+        public int SelectAttackType(Dinosaur dino)
         {
             bool valid = false;
             do
             {
                 Console.WriteLine($"What attack would you like {dino.type} to use?");
-                Console.WriteLine("1) Bite");
-                Console.WriteLine("2) Stomp");
+                for (int i = 0; i < dino.attackArray.Length; i++)
+                {
+                    Console.WriteLine((i+1) + ") " + dino.attackArray[i]);
+                }
                 int userInput = int.Parse(Console.ReadLine());
 
                 switch (userInput)
                 {
                     case 1:
-                        return "Bite";
+                        return 0;
                     case 2:
-                        return "Stomp";
+                        return 1;
                     default:
                         Console.WriteLine("Sorry, that is an invalid choice, please enter 1 or 2");
                         break;
                 }
             } while (valid == false);
-            return null;
+            return 0;
         }
     }
 }

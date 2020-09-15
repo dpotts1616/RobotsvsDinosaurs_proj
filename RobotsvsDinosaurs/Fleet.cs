@@ -9,17 +9,15 @@ namespace RobotsvsDinosaurs
     class Fleet
     {
         //member variables
-        public List<Robot> robots = new List<Robot>();
+        public List<Robot> robots;
 
         //constructor
-        public Fleet()
+        public Fleet(Random rand)
         {
-            Robot robot1 = new Robot("DJ Roomba");
-            Robot robot2 = new Robot("Bender Rodriguez");
-            Robot robot3 = new Robot("C-3P-Oh No You Didn't");
-            robots.Add(robot1);
-            robots.Add(robot2);
-            robots.Add(robot3);
+            robots = new List<Robot>();
+            robots.Add(new Robot("DJ Roomba", rand));
+            robots.Add(new Robot("Bender Rodriguez", rand));
+            robots.Add(new Robot("R2-Destroy", rand));
 
         }
 
@@ -27,7 +25,6 @@ namespace RobotsvsDinosaurs
         public Robot GetAttack()
         {
             Robot attackRobot = robots[0];
-            //int attack = attackRobot.Attack(attackRobot);
             return attackRobot;
         }
 
@@ -47,13 +44,13 @@ namespace RobotsvsDinosaurs
             robots.Remove(robot);
         }
 
-        public Robot AssignWeapon(int i, string choice)
+        public Robot AssignWeapon(int i, int choice, Random rand)
         {
             Robot robot = robots[i];
-            Weapon weapon = new Weapon(choice);
+            Weapon weapon = new Weapon(choice, rand);
             robot.type = weapon;
             return robot;
-            
+
         }
 
     }
